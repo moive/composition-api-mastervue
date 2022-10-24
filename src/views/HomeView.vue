@@ -26,7 +26,11 @@ export default defineComponent({
 	name: 'HomeView',
 	components: {},
 	setup() {
-		return { ...useEventSpace(), ...useMapping() };
+		const { capacity, attending, spacesLeft, increaseCapacity } =
+			useEventSpace();
+		const { map, embedId } = useMapping();
+
+		return { capacity, attending, spacesLeft, increaseCapacity, map, embedId };
 	},
 });
 </script>
