@@ -17,22 +17,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent } from 'vue';
+
+import useEventSpace from '@/use/event-space';
+import useMapping from '@/use/mapping';
 
 export default defineComponent({
 	name: 'HomeView',
 	components: {},
 	setup() {
-		const capacity = ref(3);
-		const attending = ref(['Tim', 'Bob', 'Joe']);
-
-		function increaseCapacity() {
-			capacity.value++;
-		}
-
-		const spacesLeft = computed(() => capacity.value - attending.value.length);
-
-		return { capacity, increaseCapacity, attending, spacesLeft };
+		return { ...useEventSpace(), ...useMapping() };
 	},
 });
 </script>
