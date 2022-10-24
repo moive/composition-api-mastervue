@@ -17,22 +17,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, reactive, toRefs } from 'vue';
 
 export default defineComponent({
 	name: 'HomeView',
 	components: {},
 	setup() {
-		const capacity = ref(3);
-		const attending = ref(['Tim', 'Bob', 'Joe']);
+		const state: any = reactive({
+			capacity: 3,
+			attending: ['Tim', 'Bob', 'Joe'],
+			spacesLeft: computed(() => state.capacity - state.attending.length),
+		});
 
 		function increaseCapacity() {
-			capacity.value++;
+			state.capacity++;
 		}
 
-		const spacesLeft = computed(() => capacity.value - attending.value.length);
-
-		return { capacity, increaseCapacity, attending, spacesLeft };
+		return { ...toRefs(state), increaseCapacity };
 	},
 });
 </script>
