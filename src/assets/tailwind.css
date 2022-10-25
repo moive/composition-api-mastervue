@@ -3,3 +3,25 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@layer base {
+	html {
+		font-family: Kumbh Sans, system-ui, sans-serif;
+	}
+}
+
+.field {
+	@apply block text-sm leading-5 w-full py-2 px-3 border-2 border-slate-500 text-slate-500 rounded shadow-sm focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300;
+}
+
+.field-checkbox {
+	@apply w-4 h-4 mr-2 border-2 rounded text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
+}
+
+.field-radio {
+	@apply h-4 w-4 m-2 border-gray-300 text-red-600 focus:ring-red-500;
+}
+
+.btn {
+	@apply px-6 py-2 font-semibold text-sm bg-cyan-700 text-white rounded-full shadow-sm;
+}
