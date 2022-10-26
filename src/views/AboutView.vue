@@ -44,21 +44,11 @@
 
 			<h3 class="font-bold mt-5 mb-1">Extras</h3>
 			<div>
-				<input
-					type="checkbox"
-					v-model="event.extras.catering"
-					class="field-checkbox"
-				/>
-				<label>Catering</label>
+				<InputCheckbox label="Catering" v-model="event.extras.catering" />
 			</div>
 
 			<div>
-				<input
-					type="checkbox"
-					v-model="event.extras.music"
-					class="field-checkbox"
-				/>
-				<label>Live music</label>
+				<InputCheckbox label="Live music" v-model="event.extras.music" />
 			</div>
 			<div class="my-5">
 				<button class="btn" type="submit">Submit</button>
@@ -68,6 +58,7 @@
 </template>
 <script setup lang="ts">
 import DropdownSelect from '@/components/global/DropdownSelect.vue';
+import InputCheckbox from '@/components/global/InputCheckbox.vue';
 import TextInput from '@/components/global/TextInput.vue';
 import { ref } from 'vue';
 
