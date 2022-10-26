@@ -1,7 +1,7 @@
 <template>
 	<div class="w-3/5">
 		<h1 class="text-3xl font-bold mb-7">Create an event</h1>
-		<form>
+		<form @submit.prevent="sendForm">
 			<DropdownSelect
 				label="Select a category"
 				v-model="event.category"
@@ -42,6 +42,7 @@
 	</div>
 </template>
 <script setup lang="ts">
+import axios from 'axios';
 import DropdownSelect from '@/components/global/DropdownSelect.vue';
 import InputCheckbox from '@/components/global/InputCheckbox.vue';
 import RadioGroup from '@/components/global/RadioGroup.vue';
@@ -74,4 +75,14 @@ const petOptions = ref([
 	{ label: 'Yes', value: 1 },
 	{ label: 'No', value: 0 },
 ]);
+
+const sendForm = () => {
+	axios
+		.post(
+			'https://my-json-server.typicode.com/moive/data-json-vue/events',
+			event.value
+		)
+		.then((response) => console.log('Response', response))
+		.catch((err) => console.error('Error', err));
+};
 </script>
