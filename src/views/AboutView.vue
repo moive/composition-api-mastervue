@@ -2,17 +2,11 @@
 	<div class="w-3/5">
 		<h1 class="text-3xl font-bold mb-7">Create an event</h1>
 		<form>
-			<label>Select a category</label>
-			<select v-model="event.category" class="field">
-				<option
-					v-for="option in categories"
-					:value="option"
-					:key="option"
-					:selected="option === event.category"
-				>
-					{{ option }}
-				</option>
-			</select>
+			<DropdownSelect
+				label="Select a category"
+				v-model="event.category"
+				:options="categories"
+			/>
 
 			<h3 class="font-bold mt-5 mb-1">Name & describe your event</h3>
 			<TextInput v-model="event.title" label="Title" />
@@ -73,10 +67,11 @@
 	</div>
 </template>
 <script setup lang="ts">
+import DropdownSelect from '@/components/global/DropdownSelect.vue';
 import TextInput from '@/components/global/TextInput.vue';
 import { ref } from 'vue';
 
-const categories = [
+const categories = ref([
 	'sustainability',
 	'nature',
 	'animal welfare',
@@ -84,7 +79,7 @@ const categories = [
 	'education',
 	'food',
 	'community',
-];
+]);
 
 const event = ref({
 	category: '',
