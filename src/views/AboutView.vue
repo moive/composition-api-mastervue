@@ -20,27 +20,12 @@
 			<pre>{{ event }}</pre>
 
 			<h3 class="font-bold mt-5 mb-1">Are pets allowed?</h3>
-			<div>
-				<input
-					type="radio"
-					class="field-radio"
-					v-model="event.pets"
-					:value="1"
-					name="pets"
-				/>
-				<label>Yes</label>
-			</div>
-
-			<div>
-				<input
-					type="radio"
-					class="field-radio"
-					v-model="event.pets"
-					:value="0"
-					name="pets"
-				/>
-				<label>No</label>
-			</div>
+			<RadioGroup
+				v-model="event.pets"
+				name="pets"
+				:options="petOptions"
+				vertical
+			/>
 
 			<h3 class="font-bold mt-5 mb-1">Extras</h3>
 			<div>
@@ -59,6 +44,7 @@
 <script setup lang="ts">
 import DropdownSelect from '@/components/global/DropdownSelect.vue';
 import InputCheckbox from '@/components/global/InputCheckbox.vue';
+import RadioGroup from '@/components/global/RadioGroup.vue';
 import TextInput from '@/components/global/TextInput.vue';
 import { ref } from 'vue';
 
@@ -83,4 +69,9 @@ const event = ref({
 		music: false,
 	},
 });
+
+const petOptions = ref([
+	{ label: 'Yes', value: 1 },
+	{ label: 'No', value: 0 },
+]);
 </script>
