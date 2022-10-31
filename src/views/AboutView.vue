@@ -7,32 +7,43 @@
 				v-model="event.category"
 				:options="categories"
 			/>
+			<fieldset class="mt-5">
+				<legend class="font-bold">Name & describe your event</legend>
+				<TextInput v-model="event.title" label="Title" />
 
-			<h3 class="font-bold mt-5 mb-1">Name & describe your event</h3>
-			<TextInput v-model="event.title" label="Title" />
+				<TextInput
+					v-model="event.description"
+					label="Description"
+					data-des="1"
+				/>
+			</fieldset>
+			<fieldset class="mt-5">
+				<legend class="font-bold">Where is your event?</legend>
 
-			<TextInput v-model="event.description" label="Description" data-des="1" />
+				<TextInput v-model="event.location" label="Location" data-loc="56" />
+			</fieldset>
 
-			<h3 class="font-bold mt-5 mb-1">Where is your event?</h3>
+			<fieldset class="mt-5">
+				<legend class="font-bold">Pet</legend>
+				<p>Are pets allowed?</p>
+				<RadioGroup
+					v-model="event.pets"
+					name="pets"
+					:options="petOptions"
+					vertical
+				/>
+			</fieldset>
 
-			<TextInput v-model="event.location" label="Location" data-loc="56" />
+			<fieldset class="mt-5">
+				<legend class="font-bold">Extras</legend>
+				<div>
+					<InputCheckbox label="Catering" v-model="event.extras.catering" />
+				</div>
 
-			<h3 class="font-bold mt-5 mb-1">Are pets allowed?</h3>
-			<RadioGroup
-				v-model="event.pets"
-				name="pets"
-				:options="petOptions"
-				vertical
-			/>
-
-			<h3 class="font-bold mt-5 mb-1">Extras</h3>
-			<div>
-				<InputCheckbox label="Catering" v-model="event.extras.catering" />
-			</div>
-
-			<div>
-				<InputCheckbox label="Live music" v-model="event.extras.music" />
-			</div>
+				<div>
+					<InputCheckbox label="Live music" v-model="event.extras.music" />
+				</div>
+			</fieldset>
 			<div class="my-5">
 				<button class="btn" type="submit">Submit</button>
 			</div>
