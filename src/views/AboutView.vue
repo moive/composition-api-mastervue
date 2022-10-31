@@ -17,8 +17,6 @@
 
 			<TextInput v-model="event.location" label="Location" data-loc="56" />
 
-			<pre>{{ event }}</pre>
-
 			<h3 class="font-bold mt-5 mb-1">Are pets allowed?</h3>
 			<RadioGroup
 				v-model="event.pets"
@@ -39,6 +37,7 @@
 				<button class="btn" type="submit">Submit</button>
 			</div>
 		</form>
+		<pre>{{ event }}</pre>
 	</div>
 </template>
 <script setup lang="ts">
