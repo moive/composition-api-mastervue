@@ -24,7 +24,7 @@
 			</fieldset>
 
 			<fieldset class="mt-5">
-				<legend class="font-bold">Pet</legend>
+				<legend class="font-bold">Pets</legend>
 				<p>Are pets allowed?</p>
 				<RadioGroup
 					v-model="event.pets"

@@ -1,13 +1,15 @@
 <template>
-	<label v-if="label">{{ label }}</label>
+	<label v-if="label" :for="uuid">{{ label }}</label>
 	<select
 		:value="modelValue"
+		:id="uuid"
+		:aria-describedby="error ? `${uuid}-error` : ''"
+		:aria-invalid="error ? true : false"
+		:class="{ error }"
 		v-bind="{
-      ...attrs, 
-      onChange: ($event)=> {
-        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
-      }
-    }"
+			...attrs,
+			onChange: updateValue,
+		}"
 		class="field"
 	>
 		<option
@@ -19,21 +21,37 @@
 			{{ option }}
 		</option>
 	</select>
+	<BaseErrorMessage v-if="error" :id="`${uuid}-error`">
+		{{ error }}</BaseErrorMessage
+	>
 </template>
 
 <script setup lang="ts">
 import { useAttrs } from 'vue';
+import BaseErrorMessage from '@/components/global/BaseErrorMessage.vue';
+import UniqueID from '@/features/UniqueID';
+import SetupFormComponent from '@/features/SetupFormComponent';
 
 interface IProps {
 	label?: string;
 	modelValue: string;
 	options: string[];
+	error?: string;
 }
 
 withDefaults(defineProps<IProps>(), {
 	label: '',
 	modelValue: '',
+	error: '',
 });
 
+const emit = defineEmits<{
+	(e: 'update:modelValue', event: string | boolean): void;
+}>();
+
 const attrs = useAttrs();
+
+const uuid = UniqueID().getID();
+
+const { updateValue } = SetupFormComponent(emit);
 </script>
