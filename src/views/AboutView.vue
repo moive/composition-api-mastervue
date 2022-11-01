@@ -6,10 +6,15 @@
 				label="Select a category"
 				v-model="event.category"
 				:options="categories"
+				error="This field is required"
 			/>
 			<fieldset class="mt-5">
 				<legend class="font-bold">Name & describe your event</legend>
-				<TextInput v-model="event.title" label="Title" />
+				<TextInput
+					v-model="event.title"
+					label="Title"
+					error="This field is required"
+				/>
 
 				<TextInput
 					v-model="event.description"
