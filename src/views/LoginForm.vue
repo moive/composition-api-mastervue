@@ -23,10 +23,6 @@ import { useField, useForm } from 'vee-validate';
 import TextInput from '@/components/global/TextInput.vue';
 import ButtonForm from '@/components/global/ButtonForm.vue';
 
-const onSubmit = () => {
-	console.log('testing ...');
-};
-
 const validations = {
 	email: (value: any) => {
 		if (!value) return 'This field is required';
@@ -48,8 +44,12 @@ const validations = {
 	},
 };
 
-useForm({
+const { handleSubmit } = useForm({
 	validationSchema: validations,
+});
+
+const onSubmit = handleSubmit((values) => {
+	console.log('submit', values);
 });
 
 const { value: email, errorMessage: emailError } = useField('email');
