@@ -25,7 +25,7 @@ import TextInput from '@/components/global/TextInput.vue';
 import ButtonForm from '@/components/global/ButtonForm.vue';
 
 const validations = {
-	email: (value: any) => {
+	email: (value: unknown) => {
 		if (!value) return 'This field is required';
 
 		const regex =
@@ -35,7 +35,7 @@ const validations = {
 		}
 		return true;
 	},
-	password: (value: any) => {
+	password: (value: unknown) => {
 		const requiredMessage = 'This field is required';
 
 		if (value === undefined || value === null) return requiredMessage;

@@ -123,7 +123,7 @@ const { value: pets } = useField('pets');
 const { value: catering } = useField('catering');
 const { value: music } = useField('music');
 
-const sendForm = handleSubmit((values: any) => {
+const sendForm = handleSubmit((values: unknown) => {
 	console.log('submit', values);
 	axios
 		.post(

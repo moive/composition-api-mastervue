@@ -12,6 +12,7 @@
 	>
 </template>
 
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import { useAttrs } from 'vue';
 import BaseErrorMessage from './BaseErrorMessage.vue';
