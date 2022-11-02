@@ -45,7 +45,7 @@ const validations = {
 	},
 };
 
-const { handleSubmit } = useForm({
+const { handleSubmit, setFieldValue } = useForm({
 	validationSchema: validations,
 });
 
@@ -53,10 +53,10 @@ const onSubmit = handleSubmit((values) => {
 	console.log('submit', values);
 });
 
-const {
-	value: email,
-	errorMessage: emailError,
-	handleChange,
-} = useField('email');
+const { value: email, errorMessage: emailError } = useField('email');
 const { value: password, errorMessage: passwordError } = useField('password');
+
+const handleChange = (event: Event) => {
+	setFieldValue('email', (event.target as HTMLInputElement).value);
+};
 </script>
