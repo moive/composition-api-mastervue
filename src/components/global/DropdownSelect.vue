@@ -34,14 +34,13 @@ import SetupFormComponent from '@/features/SetupFormComponent';
 
 interface IProps {
 	label?: string;
-	modelValue: string;
+	modelValue: unknown;
 	options: string[];
 	error?: string;
 }
 
 withDefaults(defineProps<IProps>(), {
 	label: '',
-	modelValue: '',
 	error: '',
 });
 

@@ -26,12 +26,14 @@ interface IOption {
 interface IProps {
 	options: IOption[];
 	name: string;
-	modelValue: string | number;
+	modelValue: unknown;
 	vertical?: boolean;
+	error?: string;
 }
 
 withDefaults(defineProps<IProps>(), {
 	vertical: false,
+	error: '',
 });
 </script>
 

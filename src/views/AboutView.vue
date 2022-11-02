@@ -63,7 +63,6 @@
 				<ButtonForm class="btn" type="submit">Submit</ButtonForm>
 			</div>
 		</form>
-		<pre>{{ event }}</pre>
 	</div>
 </template>
 <script setup lang="ts">
@@ -86,18 +85,6 @@ const categories = ref([
 	'food',
 	'community',
 ]);
-
-const event = ref({
-	category: '',
-	title: '',
-	description: '',
-	location: '',
-	pets: 1,
-	extras: {
-		catering: false,
-		music: false,
-	},
-});
 
 const petOptions = ref([
 	{ label: 'Yes', value: 1 },
@@ -142,6 +129,10 @@ const validationSchema = {
 const { handleSubmit, errors } = useForm({
 	validationSchema,
 	initialValues: {
+		category: '',
+		title: '',
+		description: '',
+		location: '',
 		pets: 1,
 		catering: false,
 		music: false,
@@ -157,11 +148,11 @@ const { value: catering } = useField('catering');
 const { value: music } = useField('music');
 
 const sendForm = handleSubmit((values: any) => {
-	console.log('submit');
+	console.log('submit', values);
 	axios
 		.post(
 			'https://my-json-server.typicode.com/moive/data-json-vue/events',
-			event.value
+			values
 		)
 		.then((response) => console.log('Response', response))
 		.catch((err) => console.error('Error', err));

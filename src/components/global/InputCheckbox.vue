@@ -20,7 +20,7 @@ import SetupFormComponent from '@/features/SetupFormComponent';
 
 interface IProps {
 	label?: string;
-	modelValue?: boolean;
+	modelValue?: any;
 	error?: string;
 }
 

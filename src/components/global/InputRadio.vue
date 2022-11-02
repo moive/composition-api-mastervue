@@ -20,14 +20,13 @@ import SetupFormComponent from '@/features/SetupFormComponent';
 import UniqueID from '@/features/UniqueID';
 interface IProps {
 	label: string;
-	modelValue: string | number;
+	modelValue: unknown;
 	value: string | number;
 	error?: string;
 }
 
 const props = withDefaults(defineProps<IProps>(), {
 	label: '',
-	modelValue: '',
 	error: '',
 });
 
