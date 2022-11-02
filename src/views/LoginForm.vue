@@ -4,7 +4,8 @@
 			label="Email"
 			type="email"
 			name="email"
-			v-model="email"
+			:modelValue="email"
+			@change="handleChange"
 			:error="emailError"
 		/>
 		<TextInput
@@ -52,6 +53,10 @@ const onSubmit = handleSubmit((values) => {
 	console.log('submit', values);
 });
 
-const { value: email, errorMessage: emailError } = useField('email');
+const {
+	value: email,
+	errorMessage: emailError,
+	handleChange,
+} = useField('email');
 const { value: password, errorMessage: passwordError } = useField('password');
 </script>
