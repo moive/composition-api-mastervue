@@ -1,8 +1,10 @@
 <template>
-	<div v-if="event">
-		<h1>{{ event.title }}</h1>
-		<p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
-		<p>{{ event.description }}</p>
+	<div v-if="event" class="text-center mt-10">
+		<h1 class="text-3xl font-bold mb-3">{{ event.title }}</h1>
+		<p class="text-lg">
+			{{ event.time }} on {{ event.date }} @ {{ event.location }}
+		</p>
+		<p class="text-lg">{{ event.description }}</p>
 	</div>
 </template>
 <script setup lang="ts">
