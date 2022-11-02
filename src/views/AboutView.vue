@@ -102,7 +102,7 @@ const validationSchema = object({
 	music: boolean(),
 });
 
-const { handleSubmit, errors } = useForm({
+const { handleSubmit, errors, resetForm } = useForm({
 	validationSchema,
 	initialValues: {
 		category: '',
@@ -132,5 +132,6 @@ const sendForm = handleSubmit((values: any) => {
 		)
 		.then((response) => console.log('Response', response))
 		.catch((err) => console.error('Error', err));
+	resetForm();
 });
 </script>
