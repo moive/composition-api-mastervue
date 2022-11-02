@@ -21,6 +21,29 @@ const routes: Array<RouteRecordRaw> = [
 		name: 'login',
 		component: () => import('../views/LoginForm.vue'),
 	},
+	{
+		path: '/events',
+		name: 'Events',
+		component: () => import('../views/EventView.vue'),
+		children: [
+			{
+				path: '',
+				name: 'EventsList',
+				component: () => import('../components/event/EventList.vue'),
+			},
+			{
+				path: ':id',
+				name: 'EventDetails',
+				props: true,
+				component: () => import('../components/event/EventDetails.vue'),
+			},
+			{
+				path: 'create',
+				name: 'EVentCreate',
+				component: () => import('../components/event/EventCreate.vue'),
+			},
+		],
+	},
 ];
 
 const router = createRouter({
