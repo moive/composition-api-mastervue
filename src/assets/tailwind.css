@@ -25,3 +25,6 @@
 .btn {
 	@apply px-6 py-2 font-semibold text-sm bg-cyan-700 text-white rounded-full shadow-sm;
 }
+.errorMessage {
+	@apply text-red-700 text-xs;
+}
