@@ -68,6 +68,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
+import { object, string, number, boolean } from 'yup';
 import axios from 'axios';
 
 import DropdownSelect from '@/components/global/DropdownSelect.vue';
@@ -91,40 +92,15 @@ const petOptions = ref([
 	{ label: 'No', value: 0 },
 ]);
 
-const required = (value: any) => {
-	const requiredMessage = 'This field is required';
-	if (value === undefined || value === null) return requiredMessage;
-	if (!String(value).length) return requiredMessage;
-
-	return true;
-};
-
-const minLength = (num: number, value: any) => {
-	if (String(value).length < num)
-		return `Please type at least ${num} characters`;
-	return true;
-};
-
-const anyThing = () => {
-	return true;
-};
-
-const validationSchema = {
-	category: required,
-	title: (value: string) => {
-		const req = required(value);
-		if (req !== true) return req;
-
-		const min = minLength(3, value);
-		if (min !== true) return min;
-		return true;
-	},
-	description: required,
-	location: undefined,
-	pets: anyThing,
-	catering: anyThing,
-	music: anyThing,
-};
+const validationSchema = object({
+	category: string().required(),
+	title: string().min(3).required('A cool title is required'),
+	description: string().required(),
+	location: string(),
+	pets: number(),
+	catering: boolean(),
+	music: boolean(),
+});
 
 const { handleSubmit, errors } = useForm({
 	validationSchema,
