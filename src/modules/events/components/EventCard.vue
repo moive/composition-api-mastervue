@@ -10,7 +10,7 @@
 	</router-link>
 </template>
 <script setup lang="ts">
-import { IEvent } from '@/interfaces/event.types';
+import { IEvent } from '../interfaces/event.types';
 interface IProps {
 	event: IEvent;
 }

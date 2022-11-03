@@ -15,9 +15,9 @@
 
 <script setup lang="ts">
 import { toRefs, useAttrs } from 'vue';
-import BaseErrorMessage from '@/components/global/BaseErrorMessage.vue';
-import SetupFormComponent from '@/features/SetupFormComponent';
-import UniqueID from '@/features/UniqueID';
+import BaseErrorMessage from '@/modules/global/components/BaseErrorMessage.vue';
+import UniqueID from '@/modules/global/utils/UniqueID';
+import SetupFormComponent from '@/modules/global/use/SetupFormComponent';
 interface IProps {
 	label: string;
 	modelValue: unknown;

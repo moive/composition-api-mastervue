@@ -1,5 +1,5 @@
 <template>
-	<img alt="Vue logo" src="../assets/logo.png" />
+	<img alt="Vue logo" src="@/assets/logo.png" />
 	<div>
 		<p>Spaces Left: {{ spacesLeft }} out of {{ capacity }}</p>
 		<p>Capacity: {{ capacity }}</p>
@@ -14,9 +14,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-import useEventSpace from '@/use/event-space';
-import useMapping from '@/use/mapping';
+import useEventSpace from '../use/event-space';
+import useMapping from '../use/mapping';
 
 export default defineComponent({
 	name: 'HomeView',

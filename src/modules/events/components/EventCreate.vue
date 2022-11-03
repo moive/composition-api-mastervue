@@ -44,7 +44,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { IEvent } from '@/interfaces/event.types';
+import { IEvent } from '../interfaces/event.types';
 import { ref } from 'vue';
 const categories = ref([
 	'sustainability',

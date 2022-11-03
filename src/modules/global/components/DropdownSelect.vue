@@ -28,9 +28,9 @@
 
 <script setup lang="ts">
 import { useAttrs } from 'vue';
-import BaseErrorMessage from '@/components/global/BaseErrorMessage.vue';
-import UniqueID from '@/features/UniqueID';
-import SetupFormComponent from '@/features/SetupFormComponent';
+import BaseErrorMessage from '@/modules/global/components/BaseErrorMessage.vue';
+import UniqueID from '@/modules/global/utils/UniqueID';
+import SetupFormComponent from '@/modules/global/use/SetupFormComponent';
 
 interface IProps {
 	label?: string;

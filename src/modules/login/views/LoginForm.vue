@@ -21,8 +21,8 @@
 <script setup lang="ts">
 import { useField, useForm } from 'vee-validate';
 
-import TextInput from '@/components/global/TextInput.vue';
-import ButtonForm from '@/components/global/ButtonForm.vue';
+import TextInput from '@/modules/global/components/TextInput.vue';
+import ButtonForm from '@/modules/global/components/ButtonForm.vue';
 
 const validations = {
 	email: (value: unknown) => {

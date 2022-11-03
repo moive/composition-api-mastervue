@@ -8,9 +8,9 @@
 	</div>
 </template>
 <script setup lang="ts">
-import EventService from '@/services/Event.services';
+import EventService from '../services/Event.services';
 import { toRefs, ref } from 'vue';
-import { IEvent } from '@/interfaces/event.types';
+import { IEvent } from '../interfaces/event.types';
 
 interface IProps {
 	id: string;

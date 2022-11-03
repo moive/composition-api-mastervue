@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import InputRadio from '@/components/global/InputRadio.vue';
+import InputRadio from './InputRadio.vue';
 
 interface IOption {
 	label: string;

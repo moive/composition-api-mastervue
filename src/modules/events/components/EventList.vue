@@ -7,9 +7,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import EventCard from '@/components/event/EventCard.vue';
-import EventService from '@/services/Event.services';
-import { IEvent } from '@/interfaces/event.types';
+import EventCard from './EventCard.vue';
+import EventService from '../services/Event.services';
+import { IEvent } from '../interfaces/event.types';
 
 const events = ref<IEvent[] | null>(null);
 

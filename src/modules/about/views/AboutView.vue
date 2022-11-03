@@ -71,11 +71,11 @@ import { useField, useForm } from 'vee-validate';
 import { object, string, number, boolean } from 'yup';
 import axios from 'axios';
 
-import DropdownSelect from '@/components/global/DropdownSelect.vue';
-import InputCheckbox from '@/components/global/InputCheckbox.vue';
-import RadioGroup from '@/components/global/RadioGroup.vue';
-import TextInput from '@/components/global/TextInput.vue';
-import ButtonForm from '@/components/global/ButtonForm.vue';
+import DropdownSelect from '@/modules/global/components/DropdownSelect.vue';
+import InputCheckbox from '@/modules/global/components/InputCheckbox.vue';
+import RadioGroup from '@/modules/global/components/RadioGroup.vue';
+import TextInput from '@/modules/global/components/TextInput.vue';
+import ButtonForm from '@/modules/global/components/ButtonForm.vue';
 
 const categories = ref([
 	'sustainability',
