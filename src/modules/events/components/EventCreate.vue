@@ -1,51 +1,63 @@
 <template>
-	<h1>Create an event</h1>
+	<h1 class="text-3xl font-bold mb-5">Create an event</h1>
 
-	<div class="form-container">
+	<div class="form-container w-3/4">
 		<form @submit.prevent="onSubmit">
-			<label>Select a category: </label>
-			<select v-model="event.category">
-				<option
-					v-for="option in categories"
-					:value="option"
-					:key="option"
-					:selected="option === event.category"
-				>
-					{{ option }}
-				</option>
-			</select>
+			<DropdownSelect
+				label="Select a category:"
+				v-model="event.category"
+				:options="categories"
+			/>
 
-			<h3>Name & describe your event</h3>
+			<h3 class="text-2xl font-bold mb-4">Name & describe your event</h3>
+			<TextInput
+				v-model="event.title"
+				label="Title"
+				type="text"
+				placeholder="Title"
+			/>
 
-			<label>Title</label>
-			<input v-model="event.title" type="text" placeholder="Title" />
-
-			<label>Description</label>
-			<input
+			<TextInput
 				v-model="event.description"
+				label="Description"
 				type="text"
 				placeholder="Description"
 			/>
 
-			<h3>Where is your event?</h3>
+			<h3 class="text-2xl font-bold mb-4">Where is your event?</h3>
+			<TextInput
+				v-model="event.location"
+				label="Location"
+				type="text"
+				placeholder="Location"
+			/>
 
-			<label>Location</label>
-			<input v-model="event.location" type="text" placeholder="Location" />
+			<h3 class="text-2xl font-bold mb-4">When is your event?</h3>
+			<TextInput
+				v-model="event.date"
+				label="Date"
+				type="text"
+				placeholder="Date"
+			/>
 
-			<h3>When is your event?</h3>
-			<label>Date</label>
-			<input v-model="event.date" type="text" placeholder="Date" />
-
-			<label>Time</label>
-			<input v-model="event.time" type="text" placeholder="Time" />
-
-			<button type="submit">Submit</button>
+			<TextInput
+				v-model="event.time"
+				label="Time"
+				type="text"
+				placeholder="Time"
+			/>
+			<div class="mt-5">
+				<ButtonForm type="submit" class="btn">Submit</ButtonForm>
+			</div>
 		</form>
 	</div>
 </template>
 <script setup lang="ts">
 import { IEvent } from '../interfaces/event.types';
 import { ref } from 'vue';
+import TextInput from '@/modules/global/components/TextInput.vue';
+import ButtonForm from '@/modules/global/components/ButtonForm.vue';
+import DropdownSelect from '@/modules/global/components/DropdownSelect.vue';
 const categories = ref([
 	'sustainability',
 	'nature',

@@ -12,6 +12,7 @@
 		}"
 		class="field"
 	>
+		<option value="" disabled selected>Select your option</option>
 		<option
 			v-for="option in options"
 			:value="option"
