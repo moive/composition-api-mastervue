@@ -17,7 +17,7 @@ const eventsRoute: RouteRecordRaw = {
 		},
 		{
 			path: 'create',
-			name: 'EVentCreate',
+			name: 'EventCreate',
 			component: () => import('./components/EventCreate.vue'),
 		},
 	],

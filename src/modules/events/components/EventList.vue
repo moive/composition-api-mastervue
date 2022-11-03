@@ -1,5 +1,10 @@
 <template>
-	<h1 class="text-3xl font-bold mb-5">Events for Good</h1>
+	<h1 class="text-3xl font-bold">Events for Good</h1>
+	<div>
+		<router-link to="/events/create" class="text-green-400 mb-5 block"
+			>(Create event)</router-link
+		>
+	</div>
 	<div class="events w-1/2">
 		<EventCard v-for="event in events" :key="event.id" :event="event" />
 	</div>

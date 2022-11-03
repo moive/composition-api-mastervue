@@ -39,6 +39,26 @@
       "date": "November 25, 2022",
       "time": "2:00 pm",
       "organizer": "Moises"
+    },
+    {
+      "id": "cd7b48ac-2501-4c7e-8147-6cbbfe325d00",
+      "category": "animal welfare",
+      "title": "Dog washing",
+      "description": "A nice event",
+      "location": "Texas",
+      "date": "January 12, 2023",
+      "time": "3:00 pm",
+      "organizer": "Moises"
+    },
+    {
+      "id": "a3d34764-bf99-4508-a2cb-8f20e2a8f03c",
+      "category": "animal welfare",
+      "title": "Cat nail trimming",
+      "description": "A nice event",
+      "location": "Florida Miami",
+      "date": "March 2, 2023",
+      "time": "9:00 am",
+      "organizer": "Moises"
     }
   ]
 }

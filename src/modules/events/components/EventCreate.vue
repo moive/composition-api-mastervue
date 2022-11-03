@@ -55,6 +55,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IEvent } from '../interfaces/event.types';
@@ -86,6 +87,7 @@ const event = ref<IEvent>({
 });
 
 const store = useStore();
+const router = useRouter();
 
 const onSubmit = () => {
 	const payload = {
@@ -95,7 +97,10 @@ const onSubmit = () => {
 	};
 	console.log('Event:', event.value);
 	EventServices.postEvent(payload)
-		.then((r) => console.log(r))
+		.then((r) => {
+			// console.log(r);
+			router.push({ path: '/events' });
+		})
 		.catch((err) => console.error(err));
 };
 </script>
