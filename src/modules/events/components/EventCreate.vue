@@ -53,11 +53,16 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { IEvent } from '../interfaces/event.types';
 import { ref } from 'vue';
+import { useStore } from 'vuex';
+import { v4 as uuidv4 } from 'uuid';
+
+import { IEvent } from '../interfaces/event.types';
+
 import TextInput from '@/modules/global/components/TextInput.vue';
 import ButtonForm from '@/modules/global/components/ButtonForm.vue';
 import DropdownSelect from '@/modules/global/components/DropdownSelect.vue';
+
 const categories = ref([
 	'sustainability',
 	'nature',
@@ -78,6 +83,11 @@ const event = ref<IEvent>({
 	time: '',
 	organizer: '',
 });
+
+const store = useStore();
+
+event.value.organizer = store.state.eventsModule.user;
+event.value.id = uuidv4();
 
 const onSubmit = () => {
 	console.log('Event:', event.value);
