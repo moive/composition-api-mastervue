@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const apiClient = axios.create({
 	baseURL:
-		'https://my-json-server.typicode.com/moive/composition-api-mastervue',
+		// 'https://my-json-server.typicode.com/moive/composition-api-mastervue',
+		'http://localhost:3000/',
 	withCredentials: false,
 	headers: {
 		Accept: 'application/json',
@@ -16,5 +17,8 @@ export default {
 	},
 	getEvent(id: number | string) {
 		return apiClient.get('/events/' + id);
+	},
+	postEvent(event: any) {
+		return apiClient.post('events', event);
 	},
 };

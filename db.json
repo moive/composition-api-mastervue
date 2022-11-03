@@ -29,6 +29,16 @@
       "date": "July 22, 2022",
       "time": "11:00",
       "organizer": "Carey Wales"
+    },
+    {
+      "id": "529ea5d4-ca0a-4a9c-94cc-7cb775c08bfb",
+      "category": "animal welfare",
+      "title": "Horse Brushing Race",
+      "description": "a fun event",
+      "location": "New York",
+      "date": "November 25, 2022",
+      "time": "2:00 pm",
+      "organizer": "Moises"
     }
   ]
 }
