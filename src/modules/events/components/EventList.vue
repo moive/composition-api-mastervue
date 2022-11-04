@@ -12,13 +12,18 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import EventCard from './EventCard.vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
+import EventCard from './EventCard.vue';
 const events = computed(() => store.state.eventsModule.events);
 
 const store = useStore();
-store.dispatch('eventsModule/fetchEvents');
+const router = useRouter();
+
+store.dispatch('eventsModule/fetchEvents').catch((error: any) => {
+	router.push({ name: 'BaseError', params: { error } });
+});
 </script>
 <style scoped>
 .events {

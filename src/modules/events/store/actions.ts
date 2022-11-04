@@ -8,22 +8,22 @@ export const actions = {
 		if (existingEvent) {
 			commit('SET_EVENT', existingEvent);
 		} else {
-			EventServices.getEvent(id)
+			return EventServices.getEvent(id)
 				.then((response) => {
 					commit('SET_EVENT', response.data);
 				})
 				.catch((err) => {
-					console.log(err);
+					throw err;
 				});
 		}
 	},
 	fetchEvents({ commit }: any) {
-		EventServices.getEvents()
+		return EventServices.getEvents()
 			.then((response: any) => {
 				commit('SET_EVENTS', response.data);
 			})
 			.catch((err: any) => {
-				console.log(err);
+				throw err;
 			});
 	},
 	createEvent({ commit }: any, event: IEvent) {
@@ -32,6 +32,8 @@ export const actions = {
 				console.log(res);
 				commit('ADD_EVENT', res);
 			})
-			.catch((err: any) => console.error(err));
+			.catch((err: any) => {
+				throw err;
+			});
 	},
 };

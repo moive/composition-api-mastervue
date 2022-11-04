@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 interface IProps {
 	id: string;
@@ -19,7 +20,9 @@ const props = withDefaults(defineProps<IProps>(), {});
 
 const { id } = toRefs(props);
 const store = useStore();
-
+const router = useRouter();
 const event = computed(() => store.state.eventsModule.event);
-store.dispatch('eventsModule/fetchEvent', id.value);
+store.dispatch('eventsModule/fetchEvent', id.value).catch((error: any) => {
+	router.push({ name: 'BaseError', params: { error } });
+});
 </script>

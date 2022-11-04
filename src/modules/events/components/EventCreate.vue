@@ -95,6 +95,13 @@ const onSubmit = () => {
 		id: uuidv4(),
 	};
 	// console.log('Event:', event.value);
-	store.dispatch('eventsModule/createEvent', payload);
+	store
+		.dispatch('eventsModule/createEvent', payload)
+		.then(() =>
+			router.push({ name: 'EventDetails', params: { id: payload.id } })
+		)
+		.catch((error: any) => {
+			router.push({ name: 'BaseError', params: { error } });
+		});
 };
 </script>
