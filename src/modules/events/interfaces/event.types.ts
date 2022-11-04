@@ -5,6 +5,7 @@ export interface IEvent {
 	id: number | string;
 	location: string;
 	organizer: string;
+	pets: number | boolean;
 	time: string;
 	title: string;
 }

@@ -12,7 +12,7 @@
 		}"
 		class="field"
 	>
-		<option value="" disabled selected>Select your option</option>
+		<option value="" disabled selected>{{ textSelectedDefaul }}</option>
 		<option
 			v-for="option in options"
 			:value="option"
@@ -38,11 +38,13 @@ interface IProps {
 	modelValue: unknown;
 	options: string[];
 	error?: string;
+	textSelectedDefaul?: string;
 }
 
 withDefaults(defineProps<IProps>(), {
 	label: '',
 	error: '',
+	textSelectedDefaul: 'Select your option',
 });
 
 const emit = defineEmits<{
