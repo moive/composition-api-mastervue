@@ -8,9 +8,8 @@
 	</div>
 </template>
 <script setup lang="ts">
-import EventService from '../services/Event.services';
-import { toRefs, ref } from 'vue';
-import { IEvent } from '../interfaces/event.types';
+import { toRefs, computed } from 'vue';
+import { useStore } from 'vuex';
 
 interface IProps {
 	id: string;
@@ -19,13 +18,8 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {});
 
 const { id } = toRefs(props);
-const event = ref<IEvent | null>(null);
+const store = useStore();
 
-EventService.getEvent(id.value)
-	.then((response) => {
-		event.value = response.data;
-	})
-	.catch((error) => {
-		console.log(error);
-	});
+const event = computed(() => store.state.eventsModule.event);
+store.dispatch('eventsModule/fetchEvent', id.value);
 </script>

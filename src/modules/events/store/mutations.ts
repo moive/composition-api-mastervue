@@ -6,4 +6,7 @@ export const mutations = {
 	SET_EVENTS(state: any, events: IEvent) {
 		state.events = events;
 	},
+	SET_EVENT(state: any, event: IEvent) {
+		state.event = event;
+	},
 };

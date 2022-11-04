@@ -2,6 +2,21 @@ import EventServices from '../services/Event.services';
 import { IEvent } from '../interfaces/event.types';
 
 export const actions = {
+	fetchEvent({ commit, state }: any, id: string) {
+		const existingEvent = state.events.find((event: IEvent) => event.id === id);
+
+		if (existingEvent) {
+			commit('SET_EVENT', existingEvent);
+		} else {
+			EventServices.getEvent(id)
+				.then((response) => {
+					commit('SET_EVENT', response.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	},
 	fetchEvents({ commit }: any) {
 		EventServices.getEvents()
 			.then((response: any) => {
