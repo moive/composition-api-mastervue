@@ -59,6 +59,16 @@
       "date": "March 2, 2023",
       "time": "9:00 am",
       "organizer": "Moises"
+    },
+    {
+      "id": "37b8128a-1bb5-4b6f-a83a-9546a1a9110f",
+      "category": "animal welfare",
+      "title": "Hello",
+      "description": "hi",
+      "location": "texas",
+      "date": "March 20, 2025",
+      "time": "5:00",
+      "organizer": "Moises"
     }
   ]
 }

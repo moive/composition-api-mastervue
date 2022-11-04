@@ -27,10 +27,10 @@ export const actions = {
 			});
 	},
 	createEvent({ commit }: any, event: IEvent) {
-		EventServices.postEvent(event)
-			.then((res: any) => {
-				console.log(res);
-				commit('ADD_EVENT', res);
+		return EventServices.postEvent(event)
+			.then(({ data }: any) => {
+				console.log(data);
+				commit('ADD_EVENT', data);
 			})
 			.catch((err: any) => {
 				throw err;
