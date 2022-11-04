@@ -63,7 +63,6 @@ import { IEvent } from '../interfaces/event.types';
 import TextInput from '@/modules/global/components/TextInput.vue';
 import ButtonForm from '@/modules/global/components/ButtonForm.vue';
 import DropdownSelect from '@/modules/global/components/DropdownSelect.vue';
-import EventServices from '../services/Event.services';
 
 const categories = ref([
 	'sustainability',
@@ -96,14 +95,6 @@ const onSubmit = () => {
 		id: uuidv4(),
 	};
 	// console.log('Event:', event.value);
-	console.log(store.state.eventsModule.events);
-	EventServices.postEvent(payload)
-		.then((r) => {
-			// console.log(r);
-			store.commit('eventsModule/ADD_EVENT', r);
-			console.log(store.state.eventsModule.events);
-			router.push({ path: '/events' });
-		})
-		.catch((err) => console.error(err));
+	store.dispatch('eventsModule/createEvent', payload);
 };
 </script>

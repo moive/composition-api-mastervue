@@ -10,21 +10,15 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 import EventCard from './EventCard.vue';
-import EventService from '../services/Event.services';
-import { IEvent } from '../interfaces/event.types';
+import { useStore } from 'vuex';
 
-const events = ref<IEvent[] | null>(null);
+const events = computed(() => store.state.eventsModule.events);
 
-EventService.getEvents()
-	.then((response) => {
-		events.value = response.data;
-	})
-	.catch((error) => {
-		console.log(error);
-	});
+const store = useStore();
+store.dispatch('eventsModule/fetchEvents');
 </script>
 <style scoped>
 .events {
