@@ -95,10 +95,13 @@ const onSubmit = () => {
 		organizer: store.state.eventsModule.user,
 		id: uuidv4(),
 	};
-	console.log('Event:', event.value);
+	// console.log('Event:', event.value);
+	console.log(store.state.eventsModule.events);
 	EventServices.postEvent(payload)
 		.then((r) => {
 			// console.log(r);
+			store.commit('eventsModule/ADD_EVENT', r);
+			console.log(store.state.eventsModule.events);
 			router.push({ path: '/events' });
 		})
 		.catch((err) => console.error(err));
