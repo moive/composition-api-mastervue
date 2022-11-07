@@ -7,7 +7,7 @@
 	</div>
 	<div class="events w-1/2">
 		<EventCard v-for="event in events" :key="event.id" :event="event" />
-		<div>
+		<div class="flex justify-between text-red-700 w-full">
 			<router-link
 				v-if="page - 1 > 0"
 				:to="{ name: 'EventsList', query: { page: page - 1 } }"
@@ -15,9 +15,10 @@
 				>Prev</router-link
 			>
 			<router-link
-				v-if="eventsTotal > page * 3"
+				v-if="hasNextPage"
 				:to="{ name: 'EventsList', query: { page: page + 1 } }"
 				rel="next"
+				class="ml-auto"
 				>Next</router-link
 			>
 		</div>
@@ -50,6 +51,11 @@ store
 	.catch((error: any) => {
 		router.push({ name: 'BaseError', params: { error } });
 	});
+
+const hasNextPage = computed(() => {
+	const totalPages = Math.ceil(eventsTotal.value / 3);
+	return page.value < totalPages;
+});
 </script>
 <style scoped>
 .events {
