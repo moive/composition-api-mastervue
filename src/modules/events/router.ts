@@ -8,6 +8,7 @@ const eventsRoute: RouteRecordRaw = {
 			path: '',
 			name: 'EventsList',
 			component: () => import('./components/EventList.vue'),
+			props: (route) => ({ page: parseInt(route.query.page as string) || 1 }),
 		},
 		{
 			path: ':id',

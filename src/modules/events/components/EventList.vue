@@ -24,18 +24,23 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, toRef } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 import EventCard from './EventCard.vue';
-const events = computed(() => store.state.eventsModule.events);
 
+interface IProps {
+	page: number;
+}
+
+const events = computed(() => store.state.eventsModule.events);
 const store = useStore();
 const router = useRouter();
-const route = useRoute();
 
-const page = computed<number>(() => parseInt(route.query.page as string) || 1);
+const props = defineProps<IProps>();
+const page = toRef(props, 'page');
+
 const eventsTotal = computed<number>(
 	() => store.state.eventsModule.eventsTotal
 );
