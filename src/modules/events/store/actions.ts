@@ -1,12 +1,13 @@
+/* eslint-disable eqeqeq */
 import EventServices from '../services/Event.services';
 import { IEvent } from '../interfaces/event.types';
 
 export const actions = {
-	fetchEvent({ commit, state }: any, id: string) {
-		const existingEvent = state.events.find((event: IEvent) => event.id === id);
+	fetchEvent({ commit, getters }: any, id: string) {
+		const event = getters.getEventById(id);
 
-		if (existingEvent) {
-			commit('SET_EVENT', existingEvent);
+		if (event) {
+			commit('SET_EVENT', event);
 		} else {
 			return EventServices.getEvent(id)
 				.then((response) => {
@@ -17,10 +18,11 @@ export const actions = {
 				});
 		}
 	},
-	fetchEvents({ commit }: any) {
-		return EventServices.getEvents()
+	fetchEvents({ commit }: any, { perPage, page }: any) {
+		return EventServices.getEvents(perPage, page)
 			.then((response: any) => {
 				commit('SET_EVENTS', response.data);
+				commit('SET_EVENTS_TOTAL', response.headers['x-total-count']);
 			})
 			.catch((err: any) => {
 				throw err;
