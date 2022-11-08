@@ -13,12 +13,12 @@ const errorRoute: RouteRecordRaw = {
 
 const routes: Array<RouteRecordRaw> = [
 	homeRoute,
-	aboutRoute,
+	...aboutRoute,
 	loginRoute,
 	eventsRoute,
 	errorRoute,
 ];
-
+console.log(routes);
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,

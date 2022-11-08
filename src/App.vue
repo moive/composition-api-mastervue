@@ -1,8 +1,8 @@
 <template>
 	<nav class="nav-main">
-		<router-link to="/">Home</router-link> |
-		<router-link to="/about">About</router-link> |
-		<router-link to="/events">Events</router-link>
+		<router-link :to="{ name: 'home' }">Home</router-link> |
+		<router-link :to="{ name: 'about' }">About</router-link> |
+		<router-link :to="{ name: 'Events' }">Events</router-link>
 	</nav>
 	<div class="container mx-auto">
 		<div class="flex justify-center flex-col items-center">
