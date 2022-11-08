@@ -3,13 +3,7 @@ import { homeRoute } from '@/modules/home/router';
 import { aboutRoute } from '@/modules/about/router';
 import { loginRoute } from '@/modules/login/router';
 import { eventsRoute } from '@/modules/events/router';
-
-const errorRoute: RouteRecordRaw = {
-	path: '/error/:error',
-	name: 'BaseError',
-	props: true,
-	component: () => import('@/modules/global/components/BaseError.vue'),
-};
+import { errorRoute } from '@/modules/error/router';
 
 const routes: Array<RouteRecordRaw> = [
 	homeRoute,
