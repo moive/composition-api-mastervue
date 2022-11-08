@@ -12,9 +12,26 @@ const eventsRoute: RouteRecordRaw = {
 		},
 		{
 			path: ':id',
-			name: 'EventDetails',
+			name: 'LayoutDetail',
 			props: true,
-			component: () => import('./components/EventDetails.vue'),
+			component: () => import('./components/details/LayoutDetail.vue'),
+			children: [
+				{
+					path: '',
+					name: 'EventDetails',
+					component: () => import('./components/details/EventDetails.vue'),
+				},
+				{
+					path: 'register',
+					name: 'EventRegister',
+					component: () => import('./components/details/EventRegister.vue'),
+				},
+				{
+					path: 'edit',
+					name: 'EventEdit',
+					component: () => import('./components/details/EventEdit.vue'),
+				},
+			],
 		},
 		{
 			path: 'create',

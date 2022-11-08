@@ -28,3 +28,9 @@
 .errorMessage {
 	@apply text-red-700 text-xs;
 }
+.nav-main > .router-link-active {
+	@apply text-red-700;
+}
+.navbar-event .router-link-active.router-link-exact-active {
+	@apply text-orange-500;
+}
