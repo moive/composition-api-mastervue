@@ -7,29 +7,29 @@ const eventsRoute: RouteRecordRaw = {
 		{
 			path: '',
 			name: 'EventsList',
-			component: () => import('./components/EventList.vue'),
+			component: () => import('./views/EventList.vue'),
 			props: (route) => ({ page: parseInt(route.query.page as string) || 1 }),
 		},
 		{
 			path: ':id',
 			name: 'LayoutDetail',
 			props: true,
-			component: () => import('./components/details/LayoutDetail.vue'),
+			component: () => import('./views/details/LayoutDetail.vue'),
 			children: [
 				{
 					path: '',
 					name: 'EventDetails',
-					component: () => import('./components/details/EventDetails.vue'),
+					component: () => import('./views/details/EventDetails.vue'),
 				},
 				{
 					path: 'register',
 					name: 'EventRegister',
-					component: () => import('./components/details/EventRegister.vue'),
+					component: () => import('./views/details/EventRegister.vue'),
 				},
 				{
 					path: 'edit',
 					name: 'EventEdit',
-					component: () => import('./components/details/EventEdit.vue'),
+					component: () => import('./views/details/EventEdit.vue'),
 				},
 			],
 		},
@@ -42,7 +42,7 @@ const eventsRoute: RouteRecordRaw = {
 		{
 			path: 'create',
 			name: 'EventCreate',
-			component: () => import('./components/EventCreate.vue'),
+			component: () => import('./views/EventCreate.vue'),
 		},
 	],
 };

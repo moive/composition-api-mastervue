@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
 	eventsRoute,
 	errorRoute,
 ];
-console.log(routes);
+
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
