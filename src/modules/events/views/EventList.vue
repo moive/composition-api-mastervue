@@ -27,13 +27,21 @@
 <script setup lang="ts">
 import { computed, toRef } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { onBeforeRouteLeave, useRouter } from 'vue-router';
 
 import EventCard from './EventCard.vue';
 
 interface IProps {
 	page: number;
 }
+
+onBeforeRouteLeave((to, from) => {
+	const answer = window.confirm(
+		'Do you really want to leave? you have unsaved changes!'
+	);
+	// cancel the navigation and stay on the same page
+	if (!answer) return false;
+});
 
 const events = computed(() => store.state.eventsModule.events);
 const store = useStore();
