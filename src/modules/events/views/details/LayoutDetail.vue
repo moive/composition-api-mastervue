@@ -27,6 +27,11 @@ const store = useStore();
 const router = useRouter();
 const event = computed(() => store.state.eventsModule.event);
 store.dispatch('eventsModule/fetchEvent', id.value).catch((error: any) => {
-	router.push({ name: 'BaseError', params: { error } });
+	console.log(error);
+	if (error.response && error.response.status === 404) {
+		router.push({ name: '404Resource', params: { resource: 'event' } });
+	} else {
+		router.push({ name: 'NetworkError' });
+	}
 });
 </script>

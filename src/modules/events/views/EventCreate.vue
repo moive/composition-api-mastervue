@@ -132,7 +132,12 @@ const onSubmit = () => {
 			router.push({ name: 'EventDetails', params: { id: payload.id } })
 		)
 		.catch((error: any) => {
-			router.push({ name: 'BaseError', params: { error } });
+			console.log(error);
+			if (error.response) {
+				router.push({ name: 'BaseError', params: { error } });
+			} else {
+				router.push({ name: 'NetworkError' });
+			}
 		});
 };
 </script>

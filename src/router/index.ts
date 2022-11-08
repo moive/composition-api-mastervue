@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
 	...aboutRoute,
 	loginRoute,
 	eventsRoute,
-	errorRoute,
+	...errorRoute,
 ];
 
 const router = createRouter({

@@ -49,7 +49,11 @@ const eventsTotal = computed<number>(
 store
 	.dispatch('eventsModule/fetchEvents', { perPage: 3, page: page.value })
 	.catch((error: any) => {
-		router.push({ name: 'BaseError', params: { error } });
+		if (error.response && error.response.status === 404) {
+			router.push({ name: 'BaseError', params: { error } });
+		} else {
+			router.push({ name: 'NetworkError' });
+		}
 	});
 
 const hasNextPage = computed(() => {
