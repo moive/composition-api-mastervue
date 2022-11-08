@@ -16,6 +16,12 @@ const errorRoute: RouteRecordRaw[] = [
 		name: 'NetworkError',
 		component: () => import('./views/NetworkError.vue'),
 	},
+	{
+		path: '/error/:error',
+		name: 'BaseError',
+		props: true,
+		component: () => import('./views/BaseError.vue'),
+	},
 ];
 
 export { errorRoute };
