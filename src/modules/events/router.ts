@@ -34,6 +34,12 @@ const eventsRoute: RouteRecordRaw = {
 			],
 		},
 		{
+			path: '/event/:afterEvent(.*)',
+			redirect: (to) => ({
+				path: '/events/' + to.params.afterEvent,
+			}),
+		},
+		{
 			path: 'create',
 			name: 'EventCreate',
 			component: () => import('./components/EventCreate.vue'),
