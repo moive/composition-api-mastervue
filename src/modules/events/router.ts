@@ -30,6 +30,7 @@ const eventsRoute: RouteRecordRaw = {
 					path: 'edit',
 					name: 'EventEdit',
 					component: () => import('./views/details/EventEdit.vue'),
+					meta: { requireAuth: true },
 				},
 			],
 		},

@@ -5,6 +5,7 @@ import { loginRoute } from '@/modules/login/router';
 import { eventsRoute } from '@/modules/events/router';
 import { errorRoute } from '@/modules/error/router';
 import NProgress from 'nprogress';
+import GStore from '@/modules/global/utils/GStore';
 
 const routes: Array<RouteRecordRaw> = [
 	homeRoute,
@@ -17,10 +18,30 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
+	scrollBehavior() {
+		return { top: 0 };
+	},
 });
 
-router.beforeEach(() => {
+router.beforeEach((to: any, from: any) => {
 	NProgress.start();
+
+	const notAuthorized = true;
+	if (to.meta.requireAuth && notAuthorized) {
+		GStore.flashMessage = 'Sorry, you are not authorized to view this page.';
+
+		setTimeout(() => {
+			GStore.flashMessage = '';
+		}, 3000);
+
+		console.log(from);
+
+		if (from.href) {
+			return false;
+		} else {
+			return { path: '/' };
+		}
+	}
 });
 
 router.afterEach(() => {
