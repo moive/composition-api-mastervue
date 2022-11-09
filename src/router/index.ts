@@ -4,6 +4,7 @@ import { aboutRoute } from '@/modules/about/router';
 import { loginRoute } from '@/modules/login/router';
 import { eventsRoute } from '@/modules/events/router';
 import { errorRoute } from '@/modules/error/router';
+import NProgress from 'nprogress';
 
 const routes: Array<RouteRecordRaw> = [
 	homeRoute,
@@ -16,6 +17,14 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
+});
+
+router.beforeEach(() => {
+	NProgress.start();
+});
+
+router.afterEach(() => {
+	NProgress.done();
 });
 
 export default router;
