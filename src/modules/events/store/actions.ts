@@ -1,4 +1,5 @@
 /* eslint-disable eqeqeq */
+import NProgress from 'nprogress';
 import EventServices from '../services/Event.services';
 import { IEvent } from '../interfaces/event.types';
 
@@ -19,6 +20,7 @@ export const actions = {
 		}
 	},
 	fetchEvents({ commit }: any, { perPage, page }: any) {
+		NProgress.start();
 		return EventServices.getEvents(perPage, page)
 			.then((response: any) => {
 				commit('SET_EVENTS', response.data);
@@ -26,6 +28,9 @@ export const actions = {
 			})
 			.catch((err: any) => {
 				throw err;
+			})
+			.finally(() => {
+				NProgress.done();
 			});
 	},
 	createEvent({ commit }: any, event: IEvent) {
