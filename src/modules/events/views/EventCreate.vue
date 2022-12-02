@@ -6,8 +6,7 @@
 			<DropdownSelect
 				label="Select a category:"
 				v-model="event.category"
-				:options="categories"
-			/>
+				:options="categories" />
 			<fieldset class="mb-5 mt-5">
 				<legend class="text-2xl font-bold mb-4">
 					Name & describe your event
@@ -17,15 +16,13 @@
 					v-model="event.title"
 					label="Title"
 					type="text"
-					placeholder="Title"
-				/>
+					placeholder="Title" />
 
 				<TextInput
 					v-model="event.description"
 					label="Description"
 					type="text"
-					placeholder="Description"
-				/>
+					placeholder="Description" />
 			</fieldset>
 			<fieldset class="mb-5">
 				<legend class="text-2xl font-bold mb-4">Where is your event?</legend>
@@ -33,8 +30,7 @@
 					v-model="event.location"
 					label="Location"
 					type="text"
-					placeholder="Location"
-				/>
+					placeholder="Location" />
 			</fieldset>
 			<fieldset class="mb-5">
 				<legend class="text-2xl font-bold mb-4">When is your event?</legend>
@@ -42,8 +38,7 @@
 					v-model="event.date"
 					label="Date"
 					type="text"
-					placeholder="Date"
-				/>
+					placeholder="Date" />
 			</fieldset>
 
 			<fieldset class="mt-5">
@@ -53,16 +48,14 @@
 					v-model="event.pets"
 					name="pets"
 					:options="petOptions"
-					vertical
-				/>
+					vertical />
 			</fieldset>
 			<fieldset>
 				<DropdownSelect
 					label="Select Time:"
 					textSelectedDefaul="Select Time"
 					v-model="event.time"
-					:options="itemsTime"
-				/>
+					:options="itemsTime" />
 			</fieldset>
 			<div class="mt-5">
 				<ButtonForm type="submit" class="btn">Submit</ButtonForm>
@@ -71,73 +64,77 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import { v4 as uuidv4 } from 'uuid';
+	import { ref } from 'vue';
+	import { useStore } from 'vuex';
+	import { useRouter } from 'vue-router';
+	import { v4 as uuidv4 } from 'uuid';
 
-import { IEvent } from '../interfaces/event.types';
+	import { IEvent } from '../interfaces/event.types';
 
-import TextInput from '@/modules/global/components/TextInput.vue';
-import ButtonForm from '@/modules/global/components/ButtonForm.vue';
-import DropdownSelect from '@/modules/global/components/DropdownSelect.vue';
-import RadioGroup from '@/modules/global/components/RadioGroup.vue';
+	import TextInput from '@/modules/global/components/TextInput.vue';
+	import ButtonForm from '@/modules/global/components/ButtonForm.vue';
+	import DropdownSelect from '@/modules/global/components/DropdownSelect.vue';
+	import RadioGroup from '@/modules/global/components/RadioGroup.vue';
 
-const categories = ref([
-	'sustainability',
-	'nature',
-	'animal welfare',
-	'housing',
-	'education',
-	'food',
-	'community',
-]);
+	import { useEventStore } from '../store/EventStore';
 
-const itemsTime = ref<any[]>([]);
+	const eventStore = useEventStore();
 
-for (let i = 1; i < 25; i++) {
-	itemsTime.value.push(i + ':00');
-}
+	const categories = ref([
+		'sustainability',
+		'nature',
+		'animal welfare',
+		'housing',
+		'education',
+		'food',
+		'community',
+	]);
 
-const petOptions = ref([
-	{ label: 'Yes', value: 1 },
-	{ label: 'No', value: 0 },
-]);
+	const itemsTime = ref<any[]>([]);
 
-const event = ref<IEvent>({
-	id: '',
-	category: '',
-	title: '',
-	description: '',
-	location: '',
-	date: '',
-	time: '',
-	pets: 1,
-	organizer: '',
-});
+	for (let i = 1; i < 25; i++) {
+		itemsTime.value.push(i + ':00');
+	}
 
-const store = useStore();
-const router = useRouter();
+	const petOptions = ref([
+		{ label: 'Yes', value: 1 },
+		{ label: 'No', value: 0 },
+	]);
 
-const onSubmit = () => {
-	const payload = {
-		...event.value,
-		organizer: store.state.eventsModule.user,
-		id: uuidv4(),
+	const event = ref<IEvent>({
+		id: '',
+		category: '',
+		title: '',
+		description: '',
+		location: '',
+		date: '',
+		time: '',
+		pets: 1,
+		organizer: '',
+	});
+
+	const store = useStore();
+	const router = useRouter();
+
+	const onSubmit = () => {
+		const payload = {
+			...event.value,
+			organizer: store.state.eventsModule.user,
+			id: uuidv4(),
+		};
+		// console.log('Event:', event.value);
+		eventStore
+			.createEvent(payload)
+			.then(() =>
+				router.push({ name: 'EventDetails', params: { id: payload.id } })
+			)
+			.catch((error: any) => {
+				console.log(error);
+				if (error.response) {
+					router.push({ name: 'BaseError', params: { error } });
+				} else {
+					router.push({ name: 'NetworkError' });
+				}
+			});
 	};
-	// console.log('Event:', event.value);
-	store
-		.dispatch('eventsModule/createEvent', payload)
-		.then(() =>
-			router.push({ name: 'EventDetails', params: { id: payload.id } })
-		)
-		.catch((error: any) => {
-			console.log(error);
-			if (error.response) {
-				router.push({ name: 'BaseError', params: { error } });
-			} else {
-				router.push({ name: 'NetworkError' });
-			}
-		});
-};
 </script>
