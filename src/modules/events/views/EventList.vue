@@ -31,6 +31,7 @@
 
 	import EventCard from './EventCard.vue';
 	import { useEventStore } from '../store/EventStore';
+	import { IEvent } from '../interfaces/event.types';
 
 	interface IProps {
 		page: number;
@@ -52,7 +53,7 @@
 	const props = defineProps<IProps>();
 	const page = toRef(props, 'page');
 
-	const events = computed(() => eventStore.events);
+	const events = computed<IEvent[]>(() => eventStore.events);
 
 	const eventsTotal = computed<number>(() => eventStore.eventsTotal);
 	const numberOfEvents = computed<number>(() => eventStore.numberOfEvents);
