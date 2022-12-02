@@ -34,7 +34,7 @@
 					id="user-dropdown">
 					<div class="px-4 py-3">
 						<span class="block text-sm text-gray-900 dark:text-white">
-							Bonnie Green
+							{{ user }}
 						</span>
 						<span
 							class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">
@@ -139,4 +139,8 @@
 	</nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import { useUserStore } from '@/modules/events/store/UseStore';
+
+	const { user } = useUserStore();
+</script>

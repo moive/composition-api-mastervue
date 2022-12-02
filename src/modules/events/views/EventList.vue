@@ -1,5 +1,5 @@
 <template>
-	<h1 class="text-3xl font-bold">Events for Good</h1>
+	<h1 class="text-3xl font-bold">Events for Good ({{ numberOfEvents }})</h1>
 	<div>
 		<router-link to="/events/create" class="text-green-400 mb-5 block"
 			>(Create event)</router-link
@@ -25,54 +25,58 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { computed, toRef } from 'vue';
-import { useStore } from 'vuex';
-import { onBeforeRouteLeave, useRouter } from 'vue-router';
+	import { computed, toRef } from 'vue';
+	import { useStore } from 'vuex';
+	import { onBeforeRouteLeave, useRouter } from 'vue-router';
 
-import EventCard from './EventCard.vue';
+	import EventCard from './EventCard.vue';
+	import { useEventStore } from '../store/EventStore';
 
-interface IProps {
-	page: number;
-}
+	interface IProps {
+		page: number;
+	}
 
-onBeforeRouteLeave((to, from) => {
-	const answer = window.confirm(
-		'Do you really want to leave? you have unsaved changes!'
-	);
-	// cancel the navigation and stay on the same page
-	if (!answer) return false;
-});
-
-const events = computed(() => store.state.eventsModule.events);
-const store = useStore();
-const router = useRouter();
-
-const props = defineProps<IProps>();
-const page = toRef(props, 'page');
-
-const eventsTotal = computed<number>(
-	() => store.state.eventsModule.eventsTotal
-);
-
-store
-	.dispatch('eventsModule/fetchEvents', { perPage: 3, page: page.value })
-	.catch((error: any) => {
-		if (error.response && error.response.status === 404) {
-			router.push({ name: 'BaseError', params: { error } });
-		} else {
-			router.push({ name: 'NetworkError' });
-		}
+	onBeforeRouteLeave((to, from) => {
+		const answer = window.confirm(
+			'Do you really want to leave? you have unsaved changes!'
+		);
+		// cancel the navigation and stay on the same page
+		if (!answer) return false;
 	});
 
-const hasNextPage = computed(() => {
-	const totalPages = Math.ceil(eventsTotal.value / 3);
-	return page.value < totalPages;
-});
+	const eventStore = useEventStore();
+
+	const store = useStore();
+	const router = useRouter();
+
+	const props = defineProps<IProps>();
+	const page = toRef(props, 'page');
+
+	const events = computed(() => eventStore.events);
+
+	const eventsTotal = computed<number>(() => eventStore.eventsTotal);
+	const numberOfEvents = computed<number>(() => eventStore.numberOfEvents);
+
+	eventStore
+		.fetchEvents({ perPage: 3, page: page.value })
+		.catch((error: any) => {
+			if (error.response && error.response.status === 404) {
+				router.push({ name: 'BaseError', params: { error } });
+			} else {
+				router.push({ name: 'NetworkError' });
+			}
+		});
+
+	const hasNextPage = computed(() => {
+		const totalPages = Math.ceil(eventsTotal.value / 3);
+		console.log(totalPages);
+		return page.value < totalPages;
+	});
 </script>
 <style scoped>
-.events {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
+	.events {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 </style>

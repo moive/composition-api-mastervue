@@ -5,6 +5,7 @@ import store from './store';
 import './assets/tailwind.css';
 import 'nprogress/nprogress.css';
 import { createPinia } from 'pinia';
+import 'flowbite';
 
 import { keyGStore } from '@/modules/global/utils/keys';
 import GStore from '@/modules/global/utils/GStore';
