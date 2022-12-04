@@ -1,10 +1,4 @@
 <template>
-	<!-- <nav class="nav-main">
-		<router-link :to="{ name: 'home' }">Home</router-link> |
-		<router-link :to="{ name: 'about' }">About</router-link> |
-		<router-link :to="{ path: '/events' }">Events</router-link>
-	</nav> -->
-
 	<nav
 		class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
 		<div class="container flex flex-wrap items-center justify-between mx-auto">
@@ -100,7 +94,7 @@
 					<li>
 						<router-link
 							:to="{ name: 'home' }"
-							class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+							class="block py-2 pl-3 pr-4 text-gray-700 bg-blue-700 rounded md:hover:text-blue-700 md:bg-transparent md:p-0 dark:text-white"
 							aria-current="page">
 							Home
 						</router-link>

@@ -22,6 +22,7 @@ const router = createRouter({
 		if (savedPosition) return savedPosition;
 		return { top: 0 };
 	},
+	linkActiveClass: 'nav-active',
 });
 
 router.beforeEach((to: any, from: any) => {
