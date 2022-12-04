@@ -5,13 +5,30 @@ import EventServices from '../services/Event.services';
 export const useEventStore = defineStore('EventStore', {
 	state: () => ({
 		events: [] as IEvent[],
-		event: {},
+		event: {} as IEvent,
 		eventsTotal: 0,
 	}),
 	getters: {
 		numberOfEvents: (state) => state.events.length,
+		getEventById: (state: any) => (id: string) =>
+			state.events.find((event: any) => event.id.toString() === id),
 	},
 	actions: {
+		fetchEvent(id: string) {
+			const event = this.getEventById(id);
+
+			if (event) {
+				this.event = event;
+			} else {
+				return EventServices.getEvent(id)
+					.then((response) => {
+						this.event = response.data;
+					})
+					.catch((err) => {
+						throw err;
+					});
+			}
+		},
 		fetchEvents({ perPage, page }: any) {
 			return EventServices.getEvents(perPage, page)
 				.then((response: any) => {

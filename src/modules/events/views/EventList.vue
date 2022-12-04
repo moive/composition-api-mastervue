@@ -26,7 +26,7 @@
 </template>
 <script setup lang="ts">
 	import { computed, toRef } from 'vue';
-	import { useStore } from 'vuex';
+
 	import { onBeforeRouteLeave, useRouter } from 'vue-router';
 
 	import EventCard from './EventCard.vue';
@@ -47,7 +47,6 @@
 
 	const eventStore = useEventStore();
 
-	const store = useStore();
 	const router = useRouter();
 
 	const props = defineProps<IProps>();

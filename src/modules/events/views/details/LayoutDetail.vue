@@ -12,26 +12,29 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { toRefs, computed } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+	import { toRefs, computed } from 'vue';
 
-interface IProps {
-	id: string;
-}
+	import { useRouter } from 'vue-router';
 
-const props = withDefaults(defineProps<IProps>(), {});
+	import { useEventStore } from '../../store/EventStore';
 
-const { id } = toRefs(props);
-const store = useStore();
-const router = useRouter();
-const event = computed(() => store.state.eventsModule.event);
-store.dispatch('eventsModule/fetchEvent', id.value).catch((error: any) => {
-	console.log(error);
-	if (error.response && error.response.status === 404) {
-		router.push({ name: '404Resource', params: { resource: 'event' } });
-	} else {
-		router.push({ name: 'NetworkError' });
+	interface IProps {
+		id: string;
 	}
-});
+
+	const props = withDefaults(defineProps<IProps>(), {});
+
+	const { id } = toRefs(props);
+
+	const router = useRouter();
+	const eventStore = useEventStore();
+	const event = computed(() => eventStore.event);
+	eventStore.fetchEvent(id.value)?.catch((error: any) => {
+		console.log(error);
+		if (error.response && error.response.status === 404) {
+			router.push({ name: '404Resource', params: { resource: 'event' } });
+		} else {
+			router.push({ name: 'NetworkError' });
+		}
+	});
 </script>

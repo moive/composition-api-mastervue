@@ -65,7 +65,7 @@
 </template>
 <script setup lang="ts">
 	import { ref } from 'vue';
-	import { useStore } from 'vuex';
+
 	import { useRouter } from 'vue-router';
 	import { v4 as uuidv4 } from 'uuid';
 
@@ -115,7 +115,6 @@
 		organizer: '',
 	});
 
-	const store = useStore();
 	const router = useRouter();
 
 	const onSubmit = () => {
