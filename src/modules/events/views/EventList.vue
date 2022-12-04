@@ -70,7 +70,7 @@
 
 	const hasNextPage = computed(() => {
 		const totalPages = Math.ceil(eventsTotal.value / 3);
-		console.log(totalPages);
+		// console.log(totalPages);
 		return page.value < totalPages;
 	});
 </script>

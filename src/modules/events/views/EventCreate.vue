@@ -77,8 +77,10 @@
 	import RadioGroup from '@/modules/global/components/RadioGroup.vue';
 
 	import { useEventStore } from '../store/EventStore';
+	import { useUserStore } from '../store/UseStore';
 
 	const eventStore = useEventStore();
+	const userStore = useUserStore();
 
 	const categories = ref([
 		'sustainability',
@@ -119,7 +121,7 @@
 	const onSubmit = () => {
 		const payload = {
 			...event.value,
-			organizer: store.state.eventsModule.user,
+			organizer: userStore.user,
 			id: uuidv4(),
 		};
 		// console.log('Event:', event.value);
